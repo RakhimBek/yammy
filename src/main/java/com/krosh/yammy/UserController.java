@@ -22,7 +22,7 @@ public class UserController {
 	}
 
 	@GetMapping("user/list")
-	public RegisterRs list(RegisterInfo info) {
+	public RegisterRs list() {
 		System.out.println("register");
 		RegisterRs registerRs = new RegisterRs();
 		registerRs.getUserInfos().add(new UserInfo("Илья С", "Now"));
