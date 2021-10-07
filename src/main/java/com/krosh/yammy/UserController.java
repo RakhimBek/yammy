@@ -5,16 +5,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
 @RequestMapping("api")
 @RestController
-public class RegisterController {
+public class UserController {
 
 	@GetMapping("register")
 	public RegisterRs hello(RegisterInfo info) {
+		System.out.println("register");
+		return new RegisterRs();
+	}
+
+	@GetMapping("user/list")
+	public RegisterRs list(RegisterInfo info) {
+		System.out.println("register");
+		return new RegisterRs();
+	}
+
+	@PostMapping("user/{userId}/message")
+	public RegisterRs messageList(String text) {
 		System.out.println("register");
 		return new RegisterRs();
 	}
