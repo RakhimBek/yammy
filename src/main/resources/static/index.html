@@ -18,9 +18,40 @@
 
 </div>
 
+<textarea>
+
+</textarea>
+
+<div id="messages">
+
+</div>
+
+<button id="send">send</button>
+
 </body>
 
 <script type="text/javascript">
+    var socket = new WebSocket('ws://localhost:8080/ws/echo');
 
+    function send(message) {
+        socket.send(JSON.stringify(message));
+    }
+
+    socket.addEventListener('message', function (event) {
+        console.log(event);
+        console.log(event.data);
+
+        var p = document.createElement('p')
+            .appendChild(document.createTextNode(event.data));
+
+        var messages = document.getElementById('messages');
+        messages.append(p);
+        messages.append(document.createElement('br'));
+    });
+
+    document.getElementById('send').addEventListener('click', function (evt) {
+        console.log('srgesth');
+        socket.send(JSON.stringify('message'));
+    });
 </script>
 </html>
