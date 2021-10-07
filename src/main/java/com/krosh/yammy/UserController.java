@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
+
 	@GetMapping("register")
 	public RegisterRs hello(RegisterInfo info) {
 		System.out.println("register");
@@ -23,7 +24,11 @@ public class UserController {
 	@GetMapping("user/list")
 	public RegisterRs list(RegisterInfo info) {
 		System.out.println("register");
-		return new RegisterRs();
+		RegisterRs registerRs = new RegisterRs();
+		registerRs.getUserInfos().add(new UserInfo("Илья С", "Now"));
+		registerRs.getUserInfos().add(new UserInfo("Раимбек Р", "04.10.2021"));
+		registerRs.getUserInfos().add(new UserInfo("Игорь М", "10 min ago"));
+		return registerRs;
 	}
 
 	@PostMapping("user/{userId}/message")
