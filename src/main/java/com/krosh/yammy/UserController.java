@@ -2,12 +2,9 @@ package com.krosh.yammy;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 @CrossOrigin(origins = "*")
 @RequestMapping("api")
@@ -32,9 +29,11 @@ public class UserController {
 	}
 
 	@PostMapping("user/{userId}/message")
-	public RegisterRs messageList(String text) {
+	public Collection<Message> messageList(@PathVariable String userId) {
 		System.out.println("register");
-		return new RegisterRs();
+		Collection<Message> messages = new MessageStorage().getStringMessageMap().get(userId);
+
+		return messages;
 	}
 
 	@ExceptionHandler(Throwable.class)
