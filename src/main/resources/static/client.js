@@ -36,7 +36,17 @@ var dataChannel;
 var input = document.getElementById("messageInput");
 
 function initialize() {
-    var configuration = null;
+    var configuration = {
+        'iceServers': [
+            {'url': 'stun:stun.l.google.com:19302'},
+            {'url': 'stun:stun2.1.google.com:19302'},
+            {
+                'urls': "turn:0.peerjs.com:3478",
+                'username': "peerjs",
+                'credential': "peerjsp"
+            }
+        ]
+    };
 
     peerConnection = new RTCPeerConnection(configuration);
 
@@ -67,11 +77,11 @@ function initialize() {
     dataChannel.onclose = function() {
         console.log("data channel is closed");
     };
-  
+
   	peerConnection.ondatachannel = function (event) {
         dataChannel = event.channel;
   	};
-    
+
 }
 
 function createOffer() {
